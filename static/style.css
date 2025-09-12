@@ -1,0 +1,330 @@
+/* === Foundations === */
+:root {
+  --accent-color: #9B0014;
+  --background-color: #FAFAFB;
+  --text-strong: #111827;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--background-color); }
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--background-color);
+  margin: 0;
+  height: 100vh;
+  font-family: sans-serif;
+  padding-top: 100px;
+  box-sizing: border-box;
+}
+
+
+/* === Map & Canvas === */
+.map-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+svg {
+  height: 75vh;
+  width: 55vw;
+  display: block;
+  user-select: none;
+  max-width: 100vw;
+  overflow: visible;
+}
+
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn--primary { background: var(--accent-color); color: #fff; }
+.btn--primary:hover { 
+  filter: brightness(1.25);
+}
+
+.btn:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+.municipalities input[type="checkbox"]:focus-visible,
+.province-list .btn:focus-visible,
+.search-input:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+.btn--primary.is-hover { filter: brightness(1.25); }
+
+.clear-selection { align-self: flex-start; margin-top: 10px; }
+
+.back-index {
+  position: fixed;
+  top: 45px;
+  left: 50px; 
+  padding: 4px 8px;
+  text-decoration: none;
+  width: auto;
+  height: auto;
+}
+
+
+/* === Tooltip === */
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  pointer-events: none;
+  font: inherit;
+  font-size: 14px;
+  visibility: hidden;
+  transition: opacity .2s ease;
+  opacity: 0;
+  white-space: pre-line;
+  z-index: 1000;
+  will-change: transform, opacity;
+}
+
+
+/* === Coulour legend  === */
+.colour-legend {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.25;
+  font-family: inherit;
+  z-index: 999;
+  padding: 8px 10px;
+}
+.colour-legend-key {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+  row-gap: 4px;
+  align-items: center;
+  margin: 6px 0 10px 0;
+}
+.colour-legend-key .swatch {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+
+/* === Municipalities === */
+.municipalities {
+  position: fixed;
+  top: 100px;
+  bottom: 40px;
+  left: 40px;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  z-index: 998;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+.municipality-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 90vh;
+  overflow: auto;
+}
+.municipality-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 2px 0;
+}
+.municipality-item input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--accent-color);
+}
+.municipality-item label { cursor: pointer; line-height: 1.25; }
+
+.municipalities .tagify {
+  --tags-border-color: #ccc;
+  --tags-hover-border-color: var(--accent-color);
+  --tags-focus-border-color: var(--accent-color);
+  --tags-focus-outline-color: transparent;
+  border: 1px solid var(--tags-border-color);
+  border-radius: 8px;
+  height: 36px;
+  padding: 0 10px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.municipalities .tagify__input {
+  line-height: 1.25;
+  padding: 6px 6px;
+  -webkit-tap-highlight-color: transparent;
+}
+.municipalities .tagify__input:empty::before {
+  content: 'Cerca un comune...';
+  color: #9aa3af;
+  opacity: .9;
+}
+.tagify__dropdown { 
+  z-index: 1002; 
+  border-top: transparent !important; /* toglie la riga azzurra */
+}
+.tagify__dropdown__wrapper {
+  box-sizing: border-box;
+  max-height: 280px;
+  overflow-y: auto;
+  border: 2px solid var(--accent-color) !important;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: var(--background-color) !important;
+}
+
+.tagify__dropdown__item--active,
+.tagify__dropdown__item:hover {
+  background-color: var(--accent-color) !important;
+  color: #fff;
+}
+
+
+.colour-legend h3, .municipalities h3 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+
+
+/* ── References ─ */
+.note-cell {
+  border: 2px solid var(--accent-color);
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.25;
+  display: block;     
+  height: auto;           
+  width: 350px;
+  position: fixed;
+  font-size: 14px;
+  right: 40px;
+  bottom: 48px;
+  top: auto;
+  overflow: auto;
+  white-space: normal;
+  text-align: justify;
+}
+
+/* === Areas === */
+.swatch.area       { background: #9A9A9A; }
+.swatch.area-light { background: #E3E4E6; }
+.swatch.area-dark  { background: #4A4A4A; }
+
+.area {
+  stroke: #000;
+  stroke-width: .33;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-opacity: 1;
+  fill: #9A9A9A;
+  fill-opacity: 1;
+  transition: opacity .15s ease, filter .15s ease, stroke-width .15s ease;
+  cursor: pointer;
+}
+.area-light { fill: #E3E4E6; }
+.area-dark  { fill: #4A4A4A; }
+.area-transparent { fill: transparent; }
+
+.area path {
+  vector-effect: non-scaling-stroke;
+}
+
+svg .area { pointer-events: auto !important; }
+svg .area * { pointer-events: auto !important; }
+
+.area[data-click],
+.area[data-click] *,
+svg .area[data-click],
+svg .area[data-click] * {
+  cursor: pointer !important;
+}
+
+.area.is-highlighted { filter: none; opacity: 1; stroke-width: 1; }
+.area.is-dimmed { 
+  opacity: .5; 
+  filter: none; 
+}
+
+/* === Titles === */
+.page-title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  z-index: 1001;
+}
+
+.page-title.index-title { font-size: 25px; }
+
+/* === Provinces in index === */
+.province-nav {
+  position: fixed;
+  top: 100px;
+  bottom: 40px;
+  left: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  z-index: 998;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  padding: 8px 10px;
+}
+.province-subtitle {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+.province-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.province-list li { margin: 0; }
+.province-list .btn { width: 100%; }
