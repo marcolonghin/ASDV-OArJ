@@ -1,7 +1,7 @@
 // ===== Config e nota globale =====
 const ASDV_NOTE_HTML = `
 <aside class="note-cell" aria-label="Nota">
-  Longhin, Marco. 2025. Per una sistematizzazione dell'<em>Archivio sonoro dei dialetti veneti</em> (Oral Archives Journal, under review)
+  Longhin, Marco. Per una sistematizzazione dell'<em>Archivio sonoro dei dialetti veneti</em> (Oral Archives Journal, under review)
 </aside>`;
 
 function injectGlobalNoteCell() {
