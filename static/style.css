@@ -46,7 +46,7 @@ svg {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 36px;
+  line-height: 36px;
   padding: 0 14px;
   font-size: 14px;
   font-weight: 600;
@@ -62,9 +62,7 @@ svg {
 .btn:disabled { opacity: .5; cursor: not-allowed; }
 
 .btn--primary { background: var(--accent-color); color: #fff; }
-.btn--primary:hover { 
-  filter: brightness(1.25);
-}
+.btn--primary:hover { filter: brightness(1.25); }
 
 .btn:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
 .municipalities input[type="checkbox"]:focus-visible,
@@ -82,6 +80,7 @@ svg {
   text-decoration: none;
   width: auto;
   height: auto;
+  line-height: normal;
 }
 
 
@@ -130,6 +129,7 @@ svg {
   border: 1px solid #000;
   border-radius: 3px;
 }
+.colour-legend > .btn { margin-top: 12px; }
 
 
 /* === Municipalities === */
@@ -179,6 +179,7 @@ svg {
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 10px;
 }
 .municipalities .tagify__input {
   line-height: 1.25;
@@ -203,7 +204,6 @@ svg {
   font-size: 14px;
   background-color: var(--background-color) !important;
 }
-
 .tagify__dropdown__item--active,
 .tagify__dropdown__item:hover {
   background-color: var(--accent-color) !important;
@@ -216,7 +216,6 @@ svg {
   font-weight: 700;
   font-size: 16px;
 }
-
 
 
 /* ── References ─ */
@@ -237,6 +236,7 @@ svg {
   white-space: normal;
   text-align: justify;
 }
+
 
 /* === Areas === */
 .swatch.area       { background: #9A9A9A; }
@@ -259,9 +259,7 @@ svg {
 .area-dark  { fill: #4A4A4A; }
 .area-transparent { fill: transparent; }
 
-.area path {
-  vector-effect: non-scaling-stroke;
-}
+.area path { vector-effect: non-scaling-stroke; }
 
 svg .area { pointer-events: auto !important; }
 svg .area * { pointer-events: auto !important; }
@@ -269,15 +267,11 @@ svg .area * { pointer-events: auto !important; }
 .area[data-click],
 .area[data-click] *,
 svg .area[data-click],
-svg .area[data-click] * {
-  cursor: pointer !important;
-}
+svg .area[data-click] * { cursor: pointer !important; }
 
 .area.is-highlighted { filter: none; opacity: 1; stroke-width: 1; }
-.area.is-dimmed { 
-  opacity: .5; 
-  filter: none; 
-}
+.area.is-dimmed { opacity: .5; filter: none; }
+
 
 /* === Titles === */
 .page-title {
@@ -294,6 +288,7 @@ svg .area[data-click] * {
 }
 
 .page-title.index-title { font-size: 25px; }
+
 
 /* === Provinces in index === */
 .province-nav {
@@ -328,3 +323,40 @@ svg .area[data-click] * {
 }
 .province-list li { margin: 0; }
 .province-list .btn { width: 100%; }
+
+
+/* === Dialog / Modal per fusioni === */
+#table-dialog {
+  padding: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  /* max-width: 75%; */
+  width: 60%;
+  background-color: var(--background-color);
+}
+#table-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.info-table th, .info-table td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  padding: 0.5rem;
+  text-align: left;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+.dialog-actions .btn {
+  width: auto;
+}
+.dialog-actions .btn:focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
