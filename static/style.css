@@ -193,7 +193,7 @@ svg {
 }
 .tagify__dropdown { 
   z-index: 1002; 
-  border-top: transparent !important; /* toglie la riga azzurra */
+  border-top: transparent !important; /* remove blue line */
 }
 .tagify__dropdown__wrapper {
   box-sizing: border-box;
@@ -323,6 +323,12 @@ svg .area[data-click] * { cursor: pointer !important; }
 }
 .province-list li { margin: 0; }
 .province-list .btn { width: 100%; }
+
+.area:focus,
+.area:active,
+.area:focus-visible {
+    outline: none; /* remove default outline */
+}
 
 
 /* === Dialog / Modal per fusioni === */
