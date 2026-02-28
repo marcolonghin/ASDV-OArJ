@@ -75,7 +75,7 @@ svg {
 .back-index {
   position: fixed;
   top: 45px;
-  left: 50px; 
+  left: 40px; 
   padding: 4px 8px;
   text-decoration: none;
   width: auto;
@@ -113,7 +113,6 @@ svg {
   line-height: 1.25;
   font-family: inherit;
   z-index: 999;
-  padding: 8px 10px;
 }
 .colour-legend-key {
   display: grid;
@@ -139,7 +138,7 @@ svg {
   bottom: 40px;
   left: 40px;
   border-radius: 6px;
-  padding: 8px 10px;
+  /* padding: 8px 10px; */
   font-size: 14px;
   font-family: inherit;
   z-index: 998;
@@ -230,7 +229,7 @@ svg {
   position: fixed;
   font-size: 14px;
   right: 40px;
-  bottom: 48px;
+  bottom: 40px;
   top: auto;
   overflow: auto;
   white-space: normal;
@@ -331,7 +330,7 @@ svg .area[data-click] * { cursor: pointer !important; }
 }
 
 
-/* === Dialog / Modal per fusioni === */
+/* === Dialog / Modal for Fusioni === */
 #table-dialog {
   padding: 1.5rem;
   border: none;
