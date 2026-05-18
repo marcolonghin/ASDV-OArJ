@@ -1,7 +1,7 @@
 // — Citazione articolo —
 const ASDV_NOTE_HTML = `
 <aside class="note-cell" aria-label="Nota">
-  Longhin, Marco. Per una sistematizzazione dell'<em>Archivio sonoro dei dialetti veneti</em> (Oral Archives Journal, in press)
+  Longhin, Marco. 2026. Per una sistematizzazione dell'<em>Archivio sonoro dei dialetti veneti</em>. <em>Oral Archives Journal</em> 2. 27-39. doi: <a href="https://doi.org/10.36253/oar-3352">10.36253/oar-3352</a>
 </aside>`;
 
 function injectGlobalNoteCell() {

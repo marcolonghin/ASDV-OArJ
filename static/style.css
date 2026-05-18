@@ -8,6 +8,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html { background: var(--background-color); }
+
 body {
   display: flex;
   flex-direction: column;
@@ -365,3 +366,10 @@ svg .area[data-click] * { cursor: pointer !important; }
   outline: none;
   outline-offset: 0;
 }
+
+/* === External links === */
+a[href^="https"] {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+a[href^="https"]:visited { color: var(--accent-color); }
